@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Color Tester</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; text-align: center; }
+        .notification { 
+            display: none; padding: 10px; margin-bottom: 10px; 
+            color: white; font-weight: bold; border-radius: 4px;
+        }
+        #colorBox {
+            width: 200px; height: 200px; 
+            border: 2px solid #333; margin: 20px auto;
+            background-color: white; transition: 0.3s;
+        }
+        button { cursor: pointer; padding: 5px 10px; }
+    </style>
+</head>
+<body>
+    <h2>Color Tester</h2>
+    
+    <div id="notifBox" class="notification"></div>
+
+    <p>Type a color name (e.g., red, blue, orange) or hex code (e.g., #ff0000):</p>
+    <input type="text" id="colorInput" placeholder="Enter color...">
+    <button onclick="applyColor()">Test Color</button>
+
+    <div id="colorBox"></div>
+
+    <script>
+        function applyColor() {
+            let color = document.getElementById('colorInput').value.trim();
+
+            if (color === '') {
+                showNotification('Please enter a color first!', 'red');
+                return;
+            }
+
+            let box = document.getElementById('colorBox');
+            box.style.backgroundColor = color;
+
+            showNotification('Color applied successfully!', 'green');
+        }
+
+        function showNotification(message, bgColor) {
+            let notifBox = document.getElementById('notifBox');
+            notifBox.innerText = message;
+            notifBox.style.backgroundColor = bgColor;
+            notifBox.style.display = 'block';
+
+            setTimeout(function() {
+                notifBox.style.display = 'none';
+            }, 2000);
+        }
+    </script>
+</body>
+</html>
